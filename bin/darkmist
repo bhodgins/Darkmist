@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+
+use warnings;
+use strict;
+
+use File::HomeDir;
+
+# We need to set our lib if need be for development purposes:
+BEGIN {
+    if ($ENV{'DARKMIST_LIB'}) {
+	use lib $ENV{'DARKMIST_LIB'};
+    }
+}
+
+use Darkmist qw(Core);
+
+
+my $def_confdir = File::HomeDir->my_home . '/.darkmist/';
+mkdir $def_confdir unless -d $def_confdir;
+
+my $core = Darkmist::Core->new->start;; # Launch the core
+
+exit; # We shouldn't be here.
